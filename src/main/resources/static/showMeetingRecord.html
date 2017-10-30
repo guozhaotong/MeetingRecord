@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>会议记录</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="plugs/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="plugs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="plugs/adminlte/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="plugs/adminlte/css/skins/_all-skins.min.css">
+
+</head>
+<body style="background-color: #ecf0f5" class="hold-transition skin-purple layout-top-nav">
+
+<div id="app">
+    <header class="main-header">
+        <nav class="navbar navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="index.html"><span class="navbar-brand"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;<b>E-learning小组会议记录</b></span></a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a v-bind:href="'personList.html'"><span class="glyphicon glyphicon-edit"></span> 人员编辑</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+    <h1 class="text-center">E-learning会议记录</h1>
+    <br>
+    <div style="text-align: center">
+        <a v-bind:href="'http://localhost:8080/meetingRecord.html?id='+recordId">
+            <button type="button" class="btn btn-primary">我要编辑本次会议 &nbsp; <span
+                    class="	glyphicon glyphicon-pencil"></span></button>
+        </a>
+    </div>
+    <br>
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <span style="font-size: 25px " class="box-title text-center"><b>会议时间</b></span>
+                        </div>
+                        <div style="font-size: 20px" class="box-body"><span v-text="date"></span>&nbsp;<span
+                                v-text="time"></span></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <span style="font-size: 25px " class="box-title text-center"><b>会议地点</b></span>
+                        </div>
+                        <div style="font-size: 20px" class="box-body"><span v-text="place"></span></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <span style="font-size: 25px " class="box-title text-center"><b>主持及记录人</b></span>
+                        </div>
+                        <div style="font-size: 20px" class="box-body"><span v-text="recorder"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <span style="font-size: 25px " class="box-title text-center"><b>出席人员</b></span>
+                        </div>
+                        <div style="font-size: 20px" class="box-body">
+                            <div>
+                                <div style="margin-bottom:10px" v-if="ifshow('老师',attPersons)">老师：
+                                    <span v-for="item in attPersons" v-if="item.grade=='老师'"
+                                          v-text="item.name+' '"></span>
+                                </div>
+                                <div style="margin-bottom:10px" v-if="ifshow('博士',attPersons)">博士：
+                                    <span v-for="item in attPersons" v-if="item.grade=='博士'"
+                                          v-text="item.name+' '"></span>
+                                </div>
+                                <div style="margin-bottom:10px" v-if="ifshow('研三',attPersons)">研三：
+                                    <span v-for="item in attPersons" v-if="item.grade=='研三'"
+                                          v-text="item.name+' '"></span>
+                                </div>
+                                <div style="margin-bottom:10px" v-if="ifshow('研二',attPersons)">研二：
+                                    <span v-for="item in attPersons" v-if="item.grade=='研二'"
+                                          v-text="item.name+' '"> </span>
+                                </div>
+                                <div style="margin-bottom:10px" v-if="ifshow('研一',attPersons)">研一：
+                                    <span v-for="item in attPersons" v-if="item.grade=='研一'"
+                                          v-text="item.name+' '"></span>
+                                </div>
+                                <div v-if="ifshow('研零',attPersons)">研零：
+                                    <span v-for="item in attPersons" v-if="item.grade=='研零'"
+                                          v-text="item.name+' '"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <span style="font-size: 25px " class="box-title text-center"><b>请假人员</b></span>
+                        </div>
+                        <div style="font-size: 20px" class="box-body">
+                            <div v-for="item in nonAttPersons"><span v-text="item.personName"></span> : <span
+                                    v-text="item.reason"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-if="ifExist(attachment)">
+                <div class=" col-sm-12">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <span style="font-size: 25px " class="box-title text-center"><b>会议附件</b></span>
+                        </div>
+                        <div style="font-size: 20px" class="box-body">
+                            <div v-for="att in attachment" class="row" style="margin-bottom: 5px">
+                                <div class="col-sm-9" v-text="att.fileName"></div>
+                                <div class="col-sm-3"><a
+                                        v-bind:href="'/record/downloadAtt?fileName='+att.timeStamp+att.fileName">
+                                    <button>点我下载</button>
+                                </a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <span style="font-size: 25px " class="box-title text-center"><b>会议内容</b></span>
+                        </div>
+                        <div style="font-size: 20px" class="box-body">
+                            <div v-html="content"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-sm-12">
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <span style="font-size: 25px " class="box-title text-center"><b>请假次数统计</b></span>
+                        </div>
+                        <div style="font-size: 25px" class="box-body">
+                            <div style="text-align: center">
+                                <div id="main" style="width: 100%;height:400px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="js/config.js"></script>
+<script src="plugs/jquery/jquery-1.12.4.min.js"></script>
+<script src="plugs/vue/vue.js"></script>
+<script src="plugs/bootstrap/js/bootstrap.js"></script>
+
+
+<script src="plugs/layDate-v5.0.7/laydate/laydate.js"></script>
+<script src="plugs/bootstrap3-typeahead.js"></script>
+<!-- AdminLTE App -->
+<script src="plugs/adminlte/js/adminlte.min.js"></script>
+<script src="plugs/adminlte/js/app.js"></script>
+
+<script src="plugs/echarts.min.js"></script>
+<script src="js/showMeetingRecord.js"></script>
+
+</body>
+</html>

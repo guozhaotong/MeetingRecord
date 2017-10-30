@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>会议记录列表</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="plugs/bootstrap/css/bootstrap.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugs/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="plugs/adminlte/css/AdminLTE.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="plugs/adminlte/css/skins/_all-skins.min.css">
+
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-purple layout-top-nav">
+<div id="app" class="wrapper">
+
+    <header class="main-header">
+        <nav class="navbar navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <span class="navbar-brand"><span
+                            class="glyphicon glyphicon-home">&nbsp;<b>E-learning小组会议记录</b></span>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a v-bind:href="'personList.html'"><span class="glyphicon glyphicon-edit">人员编辑</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4" style="margin-top:10px">
+                <a v-bind:href="'meetingRecord.html'">
+                    <button type="button" class="btn btn-success btn-group-sm"><span
+                            class="glyphicon glyphicon-plus"></span>
+                        添加一次会议记录
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="container">
+            <section class="content">
+                <div>
+                    <div class="box box-default" v-for="record in records">
+                        <div class="box-header with-border">
+                            <a v-bind:href="'showMeetingRecord.html?id='+record.id">
+                                <h3 class="box-title" v-text="formatDate(record.date)"></h3>
+                            </a>
+                        </div>
+                        <div class="box-body">
+                            <div class="col-sm-8">
+                                <span v-text="'主持人：'+record.recorder"></span>
+                            </div>
+                            <div class="col-sm-4">
+                                <span v-text="'阅读量：'+record.readNum"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="plugs/jquery/jquery-2.0.3.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="plugs/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/config.js"></script>
+<script src="plugs/vue/vue.js"></script>
+<script src="js/recordList.js"></script>
+</body>
+</html>

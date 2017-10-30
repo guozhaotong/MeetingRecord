@@ -15,19 +15,35 @@ public class Record {
     @Id
     @GeneratedValue
     private long id;
-    private Date time;
+    private Date date;
+    private String time;
     private String place;
     private String recorder;
     @Lob
     private String content;
     private boolean verification;
+    private String attachment;
+    private long readNum;
 
-    public Record(Date time, String place, String recorder, String content, boolean verification) {
+    public Record(Date date, String time, String place, String recorder, String content, boolean verification, String attachment) {
+        this.date = date;
         this.time = time;
         this.place = place;
         this.recorder = recorder;
         this.content = content;
         this.verification = verification;
+        this.attachment = attachment;
+        this.readNum = 0;
+    }
+
+    public Record(Date date, String time, String place, String recorder, String content, boolean verification) {
+        this.date = date;
+        this.time = time;
+        this.place = place;
+        this.recorder = recorder;
+        this.content = content;
+        this.verification = verification;
+        this.readNum = 0;
     }
 
     public Record() {
@@ -41,11 +57,19 @@ public class Record {
         this.id = id;
     }
 
-    public Date getTime() {
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -81,15 +105,33 @@ public class Record {
         this.verification = verification;
     }
 
+    public String getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(String attachment) {
+        this.attachment = attachment;
+    }
+
+    public long getReadNum() {
+        return readNum;
+    }
+
+    public void setReadNum(long readNum) {
+        this.readNum = readNum;
+    }
+
     @Override
     public String toString() {
         return "Record{" +
                 "id=" + id +
+                ", date=" + date +
                 ", time='" + time + '\'' +
                 ", place='" + place + '\'' +
                 ", recorder='" + recorder + '\'' +
                 ", content='" + content + '\'' +
                 ", verification=" + verification +
+                ", attachment='" + attachment + '\'' +
                 '}';
     }
 }

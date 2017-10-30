@@ -21,6 +21,12 @@ public class Person {
         this.grade = grade;
     }
 
+    public Person(long ID, String name, String grade) {
+        this.ID = ID;
+        this.name = name;
+        this.grade = grade;
+    }
+
     public Person() {
     }
 

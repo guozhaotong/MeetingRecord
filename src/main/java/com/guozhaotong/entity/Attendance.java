@@ -13,14 +13,14 @@ public class Attendance {
     @Id
     @GeneratedValue
     private long id;
-    private long recordID;
+    private long recordId;
     private String personName;
 
     public Attendance() {
     }
 
     public Attendance(long recordID, String personName) {
-        this.recordID = recordID;
+        this.recordId = recordID;
         this.personName = personName;
     }
 
@@ -32,12 +32,12 @@ public class Attendance {
         this.id = id;
     }
 
-    public long getRecordID() {
-        return recordID;
+    public long getRecordId() {
+        return recordId;
     }
 
-    public void setRecordID(long recordID) {
-        this.recordID = recordID;
+    public void setRecordId(long recordId) {
+        this.recordId = recordId;
     }
 
     public String getPersonName() {
@@ -52,7 +52,7 @@ public class Attendance {
     public String toString() {
         return "Attendance{" +
                 "id=" + id +
-                ", recordID=" + recordID +
+                ", recordId=" + recordId +
                 ", personName='" + personName + '\'' +
                 '}';
     }

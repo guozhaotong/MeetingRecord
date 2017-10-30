@@ -73,6 +73,7 @@ public class PersonController {
         return personList;
     }
 
+
     /***
      * 展示一个人的信息
      * @param id
@@ -102,7 +103,7 @@ public class PersonController {
      */
     @RequestMapping(value = "/listMeetingPersons", method = RequestMethod.GET)
     public List<Person> listMeetingPersons(Long recordID) {
-        List<Attendance> attendanceList = attendanceRepository.findByRecordID(recordID);
+        List<Attendance> attendanceList = attendanceRepository.findByRecordId(recordID);
         List<Person> personList = new ArrayList<>();
         attendanceList.forEach(everyAttendance -> personList.add(personRepository.findByName(everyAttendance.getPersonName())));
         return personList;

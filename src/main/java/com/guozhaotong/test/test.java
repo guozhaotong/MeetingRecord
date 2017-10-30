@@ -1,6 +1,6 @@
 package com.guozhaotong.test;
 
-import java.util.Date;
+
 
 /**
  * @author 郭朝彤
@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class test {
     public static void main(String[] args) {
-        System.out.println(new Date());
     }
+
+//2017-10-27-16-08-57.0352017.9.22换届大会.docx:2017-10-27-16-09-01.494用户测评.docx:
 }

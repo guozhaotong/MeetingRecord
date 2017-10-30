@@ -1,0 +1,9 @@
+body {
+    background-size: auto auto;
+}
+
+.bspan {
+    display: -moz-inline-box;
+    display: inline-block;
+    width: 70px;
+}

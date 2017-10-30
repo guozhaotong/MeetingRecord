@@ -17,7 +17,7 @@
 1. TomCat8及以上
 1. （可选）安装 Maven，下载解压后设置 bin 目录到 PATH 环境变量中
 
-####编译项目
+#### 编译项目
 1. 下载源码
 2. 解压后按需修改`src/main/resources/application.properties`中的数据库口令配置
 ```
@@ -29,13 +29,13 @@ spring.http.multipart.maxFileSize=
 spring.http.multipart.maxRequestSize=
 ```
 3. 执行 `mvn package` 编译打包，完成后在 target 目录下将生成 ROOT.war
-####部署
+#### 部署
 1. 手动新建数据库 meetingrecord
 2. 将 war 包部署到 Tomcat/Jetty 的 webapps 目录下，然后启动服务器，注意查看 logs 目录下的日志情况
 3. 浏览器访问 http://localhost:8080/
 4. 如果把war包改名为 `newName`，就需要在网址后面加上新的名字`/newName`；同时，在前台页面（src -> main -> resources -> static -> js -> config.js中给`appname`赋值为`/newName`）如果不改名，忽略此步骤
 
-####更改与细节说明
+#### 更改与细节说明
 - 前台页面在src/main/resources/static目录中
 - 数据库表会在第一次启动时自动创建
 - 上传附件默认在`userhome`+`/会议记录附件/`中

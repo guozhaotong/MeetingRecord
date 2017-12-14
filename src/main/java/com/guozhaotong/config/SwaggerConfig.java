@@ -22,7 +22,7 @@ public class SwaggerConfig {
     @Bean
     public Docket adminApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("知识图谱 API")
+                .groupName("123 API")
                 .forCodeGeneration(true)
                 .pathMapping("/")
                 .select()
@@ -40,7 +40,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         Contact contact = new Contact("xjtu", "http://www.xjtu.edu.cn/", "xjtushilei@foxmail.com");
         return new ApiInfoBuilder()
-                .title("知识图谱 API")
+                .title("API")
                 .description("这里是我们的工程的api")
                 .license("Apache License Version 2.0")
                 .contact(contact)

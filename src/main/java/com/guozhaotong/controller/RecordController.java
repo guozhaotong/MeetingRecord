@@ -108,13 +108,6 @@ public class RecordController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Record updateRecord(long id, Date date, String time, String place, String recorder, String content, boolean verification, String attechment, String attList, String nonAttList) {
         Record record = recordRepository.findOne(id);
-//        if (record == null) {
-//            logger.info("更新未存在的人员数据");
-//            return null;
-//        } else if (record.isVerification()) {
-//            logger.info("已经确认的记录无法更改");
-//            return null;
-//        } else {
         record.setId(id);
         record.setDate(date);
         record.setTime(time);
@@ -142,7 +135,6 @@ public class RecordController {
             nonAttendance = nonAttendanceRepository.save(nonAttendance);
         }
         return record;
-//        }
     }
 
     /***
@@ -203,8 +195,8 @@ public class RecordController {
     @RequestMapping(value = "/addAttach", method = RequestMethod.POST)
     public HashMap<String, String> addAttach(MultipartFile attachment) {
         String usrHome = System.getProperty("user.home");
-        File user_path = new File(usrHome + "/会议记录附件/");
-        if (!new File(usrHome + "/会议记录附件/").exists()) {
+        File user_path = new File(usrHome + "\\会议记录附件\\");
+        if (!new File(usrHome + "\\会议记录附件\\").exists()) {
             user_path.mkdirs();
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss.SSS");
@@ -228,7 +220,7 @@ public class RecordController {
     @RequestMapping(value = "/deleteAttach", method = RequestMethod.POST)
     public HashMap<String, Object> deleteAttach(String fileName) {
         String usrHome = System.getProperty("user.home");
-        String path_head = usrHome + "/会议记录附件/" + "\\";
+        String path_head = usrHome + "\\会议记录附件\\" + "\\";
         File file = new File(path_head + fileName);
         System.out.println(path_head + fileName);
         HashMap<String, Object> suc = new HashMap<>();
@@ -247,8 +239,8 @@ public class RecordController {
     public ResponseEntity downloadAtt(String fileName) {
         ResponseEntity responseEntity = null;
         String usrHome = System.getProperty("user.home");
-        String filePath = usrHome + "/会议记录附件/";
-        File file = new File(filePath + "/" + fileName);
+        String filePath = usrHome + "\\会议记录附件\\";
+        File file = new File(filePath + "\\" + fileName);
         if (file.exists()) { //判断文件父目录是否存在
             Object att = null;
             try {

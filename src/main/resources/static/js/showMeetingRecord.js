@@ -1,7 +1,6 @@
 /**
  * Created by shilei on 2017/7/19.
  */
-var appname = ""
 function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg);

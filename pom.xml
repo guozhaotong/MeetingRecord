@@ -36,7 +36,7 @@
         <!-- thmleaf模板依赖. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId><!-- 这个没用到，是用在MVC中的. 后端渲染-->
         </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
